@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LoginAdmin</title>
+<style>
+body {font-family: Time New Roman, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #1c160d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+.register {
+	 float: right;
+  padding-top: 6px;
+
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color:#FF4500;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+
+
+<form action="http://localhost:9999/AgroxTechnology/AdminLogin.jsp" method="post">
+  <div class="imgcontainer">
+    <img src="file:///F:/Eclipse/AgroxTechnology/WebContent/logo.png" alt="Agrox" class="avatar">
+  </div>
+
+  <div class="container">
+  
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" id="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" id="pass" required>
+        
+    <button type="submit"value="Login" onsubmit="verifyPassword()">Login</button>
+    <label>
+      <input type="checkbox" value="lsRememberMe" id="rememberMe"> Remember me
+    </label>
+    <span class="register"><label>Not have an Account?<a href="http://localhost:9999/AgroxTechnology/AdminRegister.html">Register</a></label></span>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="http://localhost:9999/AgroxTechnology/ForgotPass.html">password?</a></span>
+  </div>
+  <script>
+  const rmCheck = document.getElementById("rememberMe"),
+  emailInput = document.getElementById("email");
+ 
+
+if (localStorage.checkbox && localStorage.checkbox !== "") {
+rmCheck.setAttribute("checked", "checked");
+emailInput.value = localStorage.username;
+
+} else {
+rmCheck.removeAttribute("checked");
+emailInput.value = "";
+
+}
+
+function lsRememberMe() {
+if (rmCheck.checked && emailInput.value !== "") {
+  localStorage.username = emailInput.value;
+  
+  localStorage.checkbox = rmCheck.value;
+} else {
+  localStorage.username = "";
+ 
+  localStorage.checkbox = "";
+}
+}
+
+function verifyPassword() {  
+	  var pw = document.getElementById("pass").value;  
+	   
+	  if(pw == localStorage.password) { 
+		  
+		  alert("Password is correct");
+	  }  
+	   
+	  else {  
+		  alert("Password is incorrect");
+	  }  
+	}  
+  </script>
+</form>
+
+</body>
+</html>
